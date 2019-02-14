@@ -8,7 +8,7 @@ from urllib.request import urlopen
 seed = "https://en.wikipedia.org/wiki/NASA"
 
 #Get html
-pageContent = urlopen(seed).read()
+pageContent = urlopen(seed)
 
 #Parse
 soup = BeautifulSoup(pageContent, 'html.parser')
