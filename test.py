@@ -8,17 +8,39 @@ from urllib.request import urlopen
 seed = "https://en.wikipedia.org/wiki/NASA"
 
 #Get html
-pageContent = urlopen(seed)
+htmlResponse = urlopen(seed).read()
+pageContent = htmlResponse.decode('utf-8')
 
 #Parse
 soup = BeautifulSoup(pageContent, 'html.parser')
+title = soup.title.string
+
+#Clean
+def clean_title(title):
+    invalid_characters = ['<','>',':','"','/','\\','|','?','*']
+    for c in invalid_characters:
+        title = title.replace(c,'')
+    return title
+
+title = clean_title(title)
 
 #Find links and append to list
-titles = soup.find_all('a')
+title = soup.find_all('a')
 urls=[]
-for link in titles:
-    urls.append(link.get('href'))
+for links in title:
+        urls.append(links.get('href'))
 
-#--------testing print---------
+#------------testing---------------
+
+#------------end testing ------------------
+
+f = open('crawled_urls.txt',"w")
+
+#Print
 for items in urls:
-    print(items)
+    if '/wiki/' in str(items):
+        print("https://en.wikipedia.org" + items)
+        f.write("https://en.wikipedia.org" + items)
+        f.write("\n")
+
+f.close()
