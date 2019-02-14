@@ -7,6 +7,9 @@ from urllib.request import urlopen
 #Starting Page
 seed = "https://en.wikipedia.org/wiki/NASA"
 
+#Search term
+term = 'space'
+
 #Get html
 htmlResponse = urlopen(seed).read()
 pageContent = htmlResponse.decode('utf-8')
@@ -39,8 +42,9 @@ f = open('crawled_urls.txt',"w")
 #Print
 for items in urls:
     if '/wiki/' in str(items):
-        print("https://en.wikipedia.org" + items)
-        f.write("https://en.wikipedia.org" + items)
-        f.write("\n")
+        if term in str(items):
+            print("https://en.wikipedia.org" + items)
+            f.write("https://en.wikipedia.org" + items)
+            f.write("\n")
 
 f.close()
