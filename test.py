@@ -33,13 +33,10 @@ urls=[]
 for links in title:
         urls.append(links.get('href'))
 
-#------------testing---------------
-
-#------------end testing ------------------
-
+#Open file 
 f = open('crawled_urls.txt',"w")
 
-#Print
+#Iterate through list for matching results 
 for items in urls:
     if '/wiki/' in str(items):
         if term in str(items):
