@@ -8,7 +8,7 @@ from urllib.request import urlopen
 seed = "https://en.wikipedia.org/wiki/NASA"
 
 #Search term
-term = 'space'
+term = 'Space'
 
 #Get html
 htmlResponse = urlopen(seed).read()
@@ -48,8 +48,13 @@ for items in urls:
             f.write("https://en.wikipedia.org" + items)
             f.write("\n")
 
+
 f.close()
 
-print("NUMBER OF LINKS FOUND: " + str(numberoflinks))
+print("Starting Seed: " + seed)
 
-print("NUMBER OF RELEVANT LINKS FOUND (USING TERMS): " + str(numberofterms))
+print("Search Term: " + term)
+
+print("Number of links found: " + str(numberoflinks))
+
+print("Number of relevant links found (Using Terms): " + str(numberofterms))
